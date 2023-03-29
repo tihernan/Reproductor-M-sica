@@ -23,10 +23,8 @@ public class ReproductorMusica {
     public static void main(String[] args) throws JavaLayerException {
         Scanner scanner = new Scanner(System.in);
         int menu;
-        LinkedList<InfoCancion> generadas = mostrarLinkedlist(3);
 
-        String nombreCancionActual = generadas.getFirst().getNombre();
-        String nombreAutorActual = generadas.getFirst().getNombre();
+        LinkedList<InfoCancion> generadas = mostrarLinkedlist(3);
         int index = 0;
 
         do {
@@ -40,42 +38,55 @@ public class ReproductorMusica {
                         System.out.println("Nombre de la cancion: " + generadas.get(i).getNombre() + ", autor: " + generadas.get(i).getAutor());
                     }
                     break;
-                    
+
                 case 2:
+                    System.out.print("Mediante el numero de cancion indique cual desea escuchar: ");
+                    index = scanner.nextInt()-1;
+                    System.out.println("Reproduciendo " + generadas.get(index).getNombre() + ", " + generadas.get(index).getAutor());
                     try {
-                    FileInputStream fis = new FileInputStream(generadas.element().getRutaCancion());
-                    Player player = new Player(fis);
-                    player.play();
-                } catch (FileNotFoundException | JavaLayerException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Reproduciendo " + nombreCancionActual + ", " + nombreAutorActual);
-                index = 0;
-                break;
+                        FileInputStream fis = new FileInputStream(generadas.get(index).getRutaCancion());
+                        Player player = new Player(fis);
+                        player.play();
+                    } catch (FileNotFoundException | JavaLayerException e) {
+                        e.printStackTrace();
+                    }
+                    break;
 
                 case 3:
-                    try{
+                    try {
                     if (index <= generadas.size()) {
                         index++;
-                        String siguienteCancion = generadas.get(index).getNombre();
-                        System.out.println("Cambio realizado con exito, reproduciendo: " + siguienteCancion);
+                        System.out.println("Cambio realizado con exito, reproduciendo: " + generadas.get(index).getNombre());
+                        try {
+                            FileInputStream fis = new FileInputStream(generadas.get(index).getRutaCancion());
+                            Player player = new Player(fis);
+                            player.play();
+                        } catch (FileNotFoundException | JavaLayerException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    }catch (IndexOutOfBoundsException e){
-                        System.out.println("No hay más canciones en cola");
-                    }
-                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("No hay más canciones en cola");
+                }
+                break;
 
                 case 4:
-                    try{
+                    try {
                     if (index <= generadas.size()) {
                         index--;
-                        String siguienteCancion = generadas.get(index).getNombre();
-                        System.out.println("Cambio realizado con exito, reproduciendo: " + siguienteCancion);
+                        System.out.println("Cambio realizado con exito, reproduciendo: " + generadas.get(index).getNombre());
+                        try {
+                            FileInputStream fis = new FileInputStream(generadas.get(index).getRutaCancion());
+                            Player player = new Player(fis);
+                            player.play();
+                        } catch (FileNotFoundException | JavaLayerException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    }catch (IndexOutOfBoundsException e){
-                        System.out.println("No hay más canciones previas");
-                    }
-                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("No hay más canciones previas");
+                }
+                break;
 
                 case 5:
                     System.out.print("Digite la posicion de la cancion que desea eliminar: ");
@@ -96,7 +107,7 @@ public class ReproductorMusica {
         LinkedList generadas = new LinkedList();
         generadas.add(new InfoCancion("Saludo", "Cesar", "C:\\Users\\Cesar\\OneDrive\\Escritorio\\Primer semestre 2023\\Progra II\\Proyectos\\ReproductorMusica\\Llamado1.mp3"));
         generadas.add(new InfoCancion("Grito", "Cesar", "C:\\Users\\Cesar\\OneDrive\\Escritorio\\Primer semestre 2023\\Progra II\\Proyectos\\ReproductorMusica\\Llamado2.mp3"));
-        generadas.add(new InfoCancion("Givenvhi", "Duko", "C:\\Users\\Cesar\\OneDrive\\Escritorio\\Primer semestre 2023\\Progra II\\Proyectos\\ReproductorMusica\\Givenchi.mp3"));
+        generadas.add(new InfoCancion("Givenchi", "Duko", "C:\\Users\\Cesar\\OneDrive\\Escritorio\\Primer semestre 2023\\Progra II\\Proyectos\\ReproductorMusica\\Givenchi.mp3"));
         return generadas;
     }
 
