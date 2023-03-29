@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package reproductormusica;
 
 import java.io.FileInputStream;
@@ -17,9 +13,6 @@ import javazoom.jl.player.Player;
  */
 public class ReproductorMusica {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) throws JavaLayerException {
         Scanner scanner = new Scanner(System.in);
         int menu;
@@ -35,13 +28,13 @@ public class ReproductorMusica {
                 case 1:
                     System.out.println("\"Las canciones actuales son: \"");
                     for (int i = 0; i < generadas.size(); i++) {
-                        System.out.println("Nombre de la cancion: " + generadas.get(i).getNombre() + ", autor: " + generadas.get(i).getAutor());
+                        System.out.println("Posicion " + (i + 1) + " Nombre de la cancion: " + generadas.get(i).getNombre() + ", autor: " + generadas.get(i).getAutor());
                     }
                     break;
 
                 case 2:
                     System.out.print("Mediante el numero de cancion indique cual desea escuchar: ");
-                    index = scanner.nextInt()-1;
+                    index = scanner.nextInt() - 1;
                     System.out.println("Reproduciendo " + generadas.get(index).getNombre() + ", " + generadas.get(index).getAutor());
                     try {
                         FileInputStream fis = new FileInputStream(generadas.get(index).getRutaCancion());
